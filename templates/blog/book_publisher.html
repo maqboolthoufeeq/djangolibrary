@@ -1,0 +1,35 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<!-- <div class="float-right">
+  <a class="btn btn-outline-danger right" href="{% url 'issued-books' %}">Export as PDF</a> <br>
+</div>
+<br> -->
+
+    <table class="table">
+      <tbody>
+
+{% for m in model %}
+  {% if forloop.first %}
+
+          <tr>
+            <td> <h5>Publisher's Name </h5> </td> <td> : </td>
+            <td> <h6>{{ m.publisher }}</h6> </td>
+          </tr>
+          <tr>
+            <td> <h5>Publisher's Books </h5> </td> <td> : </td>
+            <td>
+
+                {% for m in model %}
+                <h6> {{ m.title }} </h6>
+                {% endfor %}
+
+            </td>
+          </tr>
+
+
+  {% endif %}
+{% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %}

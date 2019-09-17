@@ -1,0 +1,50 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<!-- <div class="float-right">
+  <a class="btn btn-outline-danger right" href="{% url 'issued-books' %}">Export as PDF</a> <br>
+</div>
+<br> -->
+
+<!-- {% for m in model %}
+    <h2>{{ m.issue_name }}</h2>
+    <h2>{{ m.issue_email }}</h2>
+    <h2>{{ m.issue_phone_number }}</h2>
+    <h2>{{ m.issue_address }}</h2>
+{% endfor %} -->
+
+    <table class="table">
+      <tbody>
+
+{% for m in model %}
+  {% if forloop.first %}
+
+          <tr>
+            <td> <h5>Name </h5> </td> <td> : </td>
+            <td> <h6>{{ m.issue_name }}</h6> </td>
+          </tr>
+          <tr>
+            <td> <h5>Email </h5> </td> <td> : </td>
+            <td> <h6>{{ m.issue_email }}</h6> </td>
+          </tr>
+          <tr>
+            <td> <h5>Phone Number </h5> </td> <td> : </td>
+            <td> <h6>{{ m.issue_phone_number }}</h6> </td>
+          </tr>
+          <tr>
+            <td> <h5>Address </h5> </td> <td> : </td>
+            <td> <h6>{{ m.issue_address }}</h6> </td>
+          </tr>
+          <!-- <tr>
+            <td> <h5>Issued Books </h5> </td> <td> : </td>
+            <td>
+              {% for m in model %}
+                <h6>{{ object.issued_book }}</h6>
+              {% endfor %}
+            </td>
+          </tr> -->
+  {% endif %}
+{% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %}

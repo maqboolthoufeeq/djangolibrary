@@ -1,0 +1,134 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <style type="text/css">
+          body {
+              font-weight: 200;
+              font-size: 14px;
+          }
+          .myTable {
+            border-collapse:collapse;
+            }
+            .myTable th {
+            background-color:#BDB76B;
+            color:white;
+            }
+            .myTable td, .myTable th {
+            padding:5px;
+            border:1px solid #BDB76B;
+            }
+          tbody {
+            display: table-row-group;
+            vertical-align: middle;
+            border-color: inherit;
+          }
+          table {
+            display: table;
+            border-collapse: separate;
+            border-spacing: 2px;
+            border-color: gray;
+          }
+          .title {
+              font-size: 22px;
+              font-weight: 100;
+             /* text-align: right;*/
+             padding: 10px 20px 0px 20px;
+          }
+          .title span {
+              color: #007cae;
+          }
+          .details {
+              padding: 10px 20px 0px 20px;
+              text-align: left !important;
+              /*margin-left: 40%;*/
+          }
+          .hrItem {
+              border: none;
+              height: 1px;
+              /* Set the hr color */
+              color: #333; /* old IE */
+              background-color: #fff; /* Modern Browsers */
+          }
+          h5 {
+          display: block;
+          font-size: .83em;
+          margin-top: 1.67em;
+          margin-bottom: 1.67em;
+          margin-left: 0;
+          margin-right: 0;
+          font-weight: bold;
+        }
+      </style>
+  </head>
+  <body>
+    <table class="myTable">
+      <thead>
+        <tr>
+          <th>Book</th>
+          <th>Author</th>
+          <th>Publisher</th>
+          <th>Issuer</th>
+          <th>Issuer Phone Number</th>
+        </tr>
+      </thead>
+      <tbody>
+
+
+        {% for post in posts %}
+          {% if post.issued %}
+            <tr>
+              <td>{{post.title}}</td>
+              <td>{{post.book_author}}</td>
+              <td>{{post.publisher}}</td>
+              <td>{{post.issued_to}}</td>
+              <td>{{post.issue_to_phone_number}}</td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table>
+    <!-- <table class="myTable">
+    <tr>
+    <th>Book</th>
+    <th>Table header</th>
+    <th>Table header</th>
+    </tr>
+    <tr>
+    <td>Table cell</td>
+    <td>Table cell</td>
+    <td>Table cell</td>
+    </tr>
+    <tr>
+    <td>Table cell</td>
+    <td>Table cell</td>
+    <td>Table cell</td>
+    </tr>
+    <tr>
+    <td>Table cell</td>
+    <td>Table cell</td>
+    <td>Table cell</td>
+    </tr>
+    </table> -->
+    <!-- <table border="1px" text-align='center'>
+        <tr>
+          <th>Book</th>
+          <th>Publisher</th>
+          <th>Issuerd</th>
+          <th>Issuer Phone Number</th>
+        </tr>
+        {% for post in posts %}
+          {% if post.issued %}
+            <tr>
+
+              <td> {{ post.title }} </td>
+              <td> {{post.publisher}} </td>
+              <td> {{post.issued_to}} </td>
+              <td> {{post.issue_to_phone_number}} </td>
+            </tr>
+          {% endif %}
+        {% endfor %}
+      </tbody>
+    </table> -->
+  </body>
+</html>

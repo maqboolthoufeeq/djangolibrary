@@ -1,0 +1,52 @@
+{% extends "blog/base.html" %}
+{% block content %}
+<div class="float-right">
+  <a class="btn btn-outline-danger right mb-3" href="{% url 'pdf-gen-issued' %}">Export as PDF</a> <br>
+</div>
+<br>
+<table class="table">
+  <thead class="black white-text">
+    <tr>
+      <th scope="col"><h5>Book</h5></th>
+      <th scope="col"><h5>Author</h5></th>
+      <th scope="col"><h5>Publisher</h5></th>
+      <th scope="col"><h5>Issuer</h5></th>
+      <th scope="col"><h6>Issuer Phone Number</h6></th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for post in posts %}
+      {% if post.issued %}
+        <tr>
+          <th scope="row"><a href="{% url 'post-detail' post.id %}"><h6>{{post.title}}</h6></a></th>
+          <td><a href="{% url 'book-author-detail' post.book_author %}"><h6>{{post.book_author}}</h6></a></td>
+          <td><h6>{{post.publisher}}</h6></td>
+          <td><h6>{{post.issued_to}}</h6></td>
+          <td><h6>{{post.issue_to_phone_number}}</h6></td>
+        </tr>
+      {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+
+  {% if is_paginated %}
+    {% if page_obj.has_previous %}
+      <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+      <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+    {% for num in page_obj.paginator.page_range %}
+      {% if page_obj.number == num %}
+        <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+
+      {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'-3' %}
+        <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+      <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+    {% endif %}
+  {% endif %}
+
+
+{% endblock %}
